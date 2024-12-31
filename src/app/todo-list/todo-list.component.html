@@ -1,0 +1,62 @@
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Simple To-Do List</h1>
+    <div class="mb-3">
+      <input
+        [(ngModel)]="newTodoTitle"
+        class="form-control mb-2"
+        placeholder="Enter new to-do title"
+        type="text"
+      />
+      <textarea
+        [(ngModel)]="newTodoDescription"
+        class="form-control"
+        placeholder="Enter new to-do description"
+        rows="3"
+      ></textarea>
+      <button (click)="addTodo()" class="btn btn-primary mt-2 w-100">Add To-Do</button>
+    </div>
+    <ul class="list-group">
+      <li
+        *ngFor="let todo of todos"
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div [ngClass]="{ 'text-decoration-line-through': todo.completed }">
+          <strong>{{ todo.title }}</strong>
+          <p class="mb-1">{{ todo.description }}</p>
+        </div>
+  
+        <div class="btn-group" role="group">
+          <button (click)="toggleComplete(todo)" class="btn btn-success btn-sm">
+            <i class="bi bi-check2-circle"></i>
+          </button>
+          <button (click)="startEditing(todo)" class="btn btn-warning btn-sm">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button (click)="deleteTodo(todo.id)" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+  
+
+        <div *ngIf="editTodoId === todo.id" class="mt-2">
+          <input
+            [(ngModel)]="editTodoTitle"
+            class="form-control mb-2"
+            placeholder="Edit title"
+            type="text"
+          />
+          <textarea
+            [(ngModel)]="editTodoDescription"
+            class="form-control mb-2"
+            placeholder="Edit description"
+            rows="3"
+          ></textarea>
+          <button (click)="saveEdit()" class="btn btn-success w-100">Save</button>
+          <button (click)="cancelEdit()" class="btn btn-secondary w-100 mt-2">Cancel</button>
+        </div>
+      </li>
+    </ul>
+    <P *ngIf="todos.length === 0" class="text-center mt-4">NODATA FOUND</P>
+  </div>
+  

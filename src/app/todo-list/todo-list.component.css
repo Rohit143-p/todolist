@@ -1,0 +1,19 @@
+/* todo.component.css */
+.completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  input, textarea {
+    margin: 5px;
+    width: 300px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  
+  textarea {
+    height: 60px;
+  }
+  
